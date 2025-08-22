@@ -1,0 +1,6 @@
+{
+	"autopep8.args": [
+        "--max-line-length=400",
+		"--ignore=E302,E265"
+    ]
+}

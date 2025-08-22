@@ -1,0 +1,8 @@
+# Python Virtual Environment Directory
+*_VirEnv/
+
+# Compiled Python Files
+*.pyc
+
+# Local SQLite Database
+prompt_components.db
