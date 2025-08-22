@@ -2,6 +2,7 @@ import sqlite3
 from contextlib import closing
 from typing import Optional, List, Tuple
 import streamlit as st
+import pyperclip
 
 # -------------------------------
 # Page setup
@@ -659,8 +660,6 @@ else:
                 with row[3]:
                     st.button("✖", key=f"rem_{i}", on_click=remove_from_builder, args=(i,))
 
-            st.button("Clear All", on_click=clear_builder)
-
             # Build prompt text (two carriage returns between components)
             parts: List[str] = []
             for cid in st.session_state.builder_list:
@@ -669,7 +668,14 @@ else:
                     parts.append(c["content"])
             prompt_text = "\n\n".join(parts)
 
+            prompt_act_cols = st.columns(3)
+            with prompt_act_cols[0]:
+                st.button("Clear Components", on_click=clear_builder)
+            with prompt_act_cols[1]:
+                if st.button('Copy Prompt'):
+                    pyperclip.copy(prompt_text)
+            with prompt_act_cols[2]:
+                st.download_button("Download Prompt", data=prompt_text, file_name="prompt.txt", mime="text/plain")
+
             st.markdown("**Prompt Preview**")
-            # st.code shows a copy button by default
-            st.code(prompt_text or "", language=None)
-            st.download_button("Download as .txt", data=prompt_text, file_name="prompt.txt", mime="text/plain")
+            st.text(prompt_text or "")
