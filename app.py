@@ -605,7 +605,7 @@ if st.session_state.active_tab == "components":
                             idx = i
                             break
                     dest = st.selectbox("Folder", options=folder_options, index=idx, format_func=lambda x: x[1])
-                    content = st.text_area("Content", value=comp["content"], height=200)
+                    content = st.text_area("Content", value=comp["content"], height=350)
                     c1, c2 = st.columns(2)
                     with c1:
                         if st.form_submit_button("💾 Save"):
