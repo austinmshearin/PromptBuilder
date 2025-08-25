@@ -664,7 +664,7 @@ if page == "Build":
         with c1:
             if st.button("Clear All"):
                 clear_all()
-                st.experimental_rerun()
+                st.rerun()
         with c2:
             if st.button("Copy Prompt"):
                 try:
@@ -681,7 +681,7 @@ if page == "Build":
 elif page == "Preview":
     st.subheader("Full Prompt Preview")
     prompt_text = build_prompt_text(conn)
-    st.text_area(" ", value=prompt_text, height=420, label_visibility="collapsed", disabled=True)
+    st.text_area(" ", value=prompt_text, height=550, label_visibility="collapsed", disabled=True)
     c1, c2 = st.columns(2)
     with c1:
         if st.button("Copy Prompt"):
